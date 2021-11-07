@@ -52,7 +52,7 @@
 
         <link name="link_B">
             <self_collide>1</self_collide>
-            <pose>2 0 0 0 0 1.0</pose>
+            <pose>2 0 0 0 0 0</pose>
             <inertial>
                 <mass>0.5</mass>
                 <pose>1 0 0 0 0 0</pose>
@@ -94,7 +94,7 @@
 
         <link name="link_C">
             <self_collide>1</self_collide>
-            <pose>2 0 0 0 0 2.0</pose>
+            <pose>4 0 0 0 0 0</pose>
             <inertial>
                 <mass>0.5</mass>
                 <pose>1 0 0 0 0 0</pose>
@@ -157,8 +157,8 @@
         </joint>
 
         <joint name="link_B_to_link_C" type="revolute">
-            <parent>link_A</parent>
-            <child>link_B</child>
+            <parent>link_B</parent>
+            <child>link_C</child>
             <pose>0 0 0 0 0 0</pose>
             <axis>
                 <limit>
@@ -181,7 +181,7 @@
 
         <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
             <robotNamespace>demo_model</robotNamespace>
-            <jointName>base_link_to_link_A, link_A_to_link_B, link_B_to_link_C</jointName>
+            <jointName>link_A_to_link_B, link_B_to_link_C</jointName>
             <!-- SDF記述メモ："fixed"に設定されたJointはnan値が出力されるのでROS側で下記エラーが出る -->
             <!-- Ignoring transform for child_frame_id "hoge" from authority "unknown_publisher" because of an invalid quaternion in the transform (nan nan nan nan) -->
         </plugin>
