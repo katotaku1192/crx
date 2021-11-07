@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:include filename="$(find crx_description)/crx_v1/urdf/limb.transmission.xacro"/>
+
+<xacro:macro name="limb" params="parent *joint_origin">
+
+    <link name="link_A">
+      <visual>
+        <origin xyz="0 0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link_B">
+      <visual>
+        <origin xyz="0 0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link_C">
+      <visual>
+        <origin xyz="0 0.2 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.4 0.05"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0.2 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.4 0.05"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link_D">
+      <visual>
+        <origin xyz="0 0.1 -0.1" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0.1 -0.1" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link_E">
+      <visual>
+        <origin xyz="0 0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </collision>
+    </link>
+    
+    <link name="link_F">
+      <visual>
+        <origin xyz="0 -0.2 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.4 0.05"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.2 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.4 0.05"/>
+        </geometry>
+      </collision>
+    </link>
+
+
+    <joint name="${parent}_to_link_A" type="fixed">
+      <parent link="${parent}"/>
+      <child link="link_A"/>
+      <xacro:insert_block name="joint_origin"/>
+    </joint>
+
+    <joint name="link_A_to_link_B" type="revolute">
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
+      <dynamics damping="0.1"/>
+      <parent link="link_A"/>
+      <child link="link_B"/>
+      <origin xyz="0 0.2 0" rpy="0 0 0"/>
+    </joint>
+    <xacro:effort_trans joint="link_A_to_link_B"/>
+
+    <joint name="link_B_to_link_C" type="revolute">
+      <axis xyz="1 0 0"/>
+      <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
+      <dynamics damping="0.1"/>
+      <parent link="link_B"/>
+      <child link="link_C"/>
+      <origin xyz="0 0.2 0.1" rpy="0 0 0"/>
+    </joint>
+    <xacro:effort_trans joint="link_B_to_link_C"/>
+
+    <joint name="link_C_to_link_D" type="continuous">
+      <axis xyz="1 0 0"/>
+      <parent link="link_C"/>
+      <child link="link_D"/>
+      <origin xyz="0 0.4 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="link_D_to_link_E" type="revolute">
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
+      <dynamics damping="0.1"/>
+      <parent link="link_D"/>
+      <child link="link_E"/>
+      <origin xyz="0 0.2 -0.1" rpy="0 0 0"/>
+    </joint>
+    <xacro:effort_trans joint="link_C_to_link_D"/>
+
+    <joint name="link_D_to_link_F" type="continuous">
+      <axis xyz="0 0 1"/>
+      <parent link="link_D"/>
+      <child link="link_F"/>
+      <origin xyz="0 0 -0.2" rpy="0 0 0"/>
+    </joint>
+    
+</xacro:macro>
+
+</robot>

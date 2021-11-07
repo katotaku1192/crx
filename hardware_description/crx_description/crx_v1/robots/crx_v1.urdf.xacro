@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<robot name="crx_v1" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find crx_description)/crx_v1/urdf/limb.urdf.xacro"/>
+
+  <link name="base_link"/>
+
+  <xacro:limb parent="base_link">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:limb>
+
+</robot>

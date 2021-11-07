@@ -1,0 +1,190 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+    <model name='crx_v1'>
+        <static>false</static>
+        <self_collide>1</self_collide>
+
+        <link name="base_link">
+            <pose>0 0 0 0 0 0</pose>
+        </link>
+
+        <link name="link_A">
+            <self_collide>1</self_collide>
+            <pose>0 0 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <pose>1 0 0 0 0 0</pose>
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_A_visual">
+                <pose>1 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>2 0.1 0.1</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_A_collision">
+                <pose>1 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>2 0.1 0.1</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="link_B">
+            <self_collide>1</self_collide>
+            <pose>2 0 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <pose>1 0 0 0 0 0</pose>
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_B_visual">
+                <pose>1 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>2 0.1 0.1</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_B_collision">
+                <pose>1 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>2 0.1 0.1</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="link_C">
+            <self_collide>1</self_collide>
+            <pose>4 0 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <pose>1 0 0 0 0 0</pose>
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_C_visual">
+                <pose>1 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>2 0.1 0.1</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_C_collision">
+                <pose>1 0 0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>2 0.1 0.1</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+
+        <joint name="base_link_to_link_A" type="fixed">
+            <parent>base_link</parent>
+            <child>link_A</child>
+            <pose>0 0 0 0 0 0</pose>
+        </joint>
+
+        <joint name="link_A_to_link_B" type="revolute">
+            <parent>link_A</parent>
+            <child>link_B</child>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <limit>
+                    <lower>-1.0</lower>
+                    <upper>1.0</upper>
+                    <effort>100.0</effort>
+                    <velocity>3.14</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+        </joint>
+
+        <joint name="link_B_to_link_C" type="revolute">
+            <parent>link_B</parent>
+            <child>link_C</child>
+            <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <limit>
+                    <lower>-1.0</lower>
+                    <upper>1.0</upper>
+                    <effort>100.0</effort>
+                    <velocity>3.14</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+        </joint>
+
+
+        <!-- gazebo_ros_control plugins -->
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>crx_v1</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+            <legacyModeNS>true</legacyModeNS>
+        </plugin>
+
+        <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+            <robotNamespace>demo_model</robotNamespace>
+            <jointName>link_A_to_link_B, link_B_to_link_C</jointName>
+            <!-- SDF記述メモ："fixed"に設定されたJointはnan値が出力されるのでROS側で下記エラーが出る -->
+            <!-- Ignoring transform for child_frame_id "hoge" from authority "unknown_publisher" because of an invalid quaternion in the transform (nan nan nan nan) -->
+        </plugin>
+
+    </model>
+</sdf>
