@@ -203,6 +203,45 @@
             </collision>
         </link>
 
+        <link name="link_F">
+            <self_collide>1</self_collide>
+            <pose>0 0.6 -0.1 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>               
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_F_visual">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.4 0.05</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_F_collision">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.4 0.05</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
 
         <joint name="base_link_to_link_A" type="fixed">
             <parent>base_link</parent>
@@ -264,6 +303,23 @@
             </axis>
         </joint>
 
+        <joint name="link_D_to_link_F" type="revolute">
+            <parent>link_D</parent>
+            <child>link_F</child>
+            <pose>0 0.2 0 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+
+        <joint name="close_joint" type="revolute">
+            <parent>link_F</parent>
+            <child>link_B</child>
+            <pose>0 0.1 -0.1 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
 
         <!-- gazebo_ros_control plugins -->
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -273,8 +329,8 @@
         </plugin>
 
         <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
-            <robotNamespace>demo_model</robotNamespace>
-            <jointName>link_A_to_link_B, link_B_to_link_C, link_C_to_link_D, link_D_to_link_E</jointName>
+            <robotNamespace>crx_v1</robotNamespace>
+            <jointName>link_A_to_link_B, link_B_to_link_C, link_C_to_link_D, link_D_to_link_E, link_D_to_link_F</jointName>
             <!-- SDF記述メモ："fixed"に設定されたJointはnan値が出力されるのでROS側で下記エラーが出る -->
             <!-- Ignoring transform for child_frame_id "hoge" from authority "unknown_publisher" because of an invalid quaternion in the transform (nan nan nan nan) -->
         </plugin>

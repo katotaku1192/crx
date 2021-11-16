@@ -140,7 +140,7 @@
     <xacro:effort_trans joint="link_D_to_link_E"/>
 
     <joint name="link_D_to_link_F" type="continuous">
-      <axis xyz="0 0 1"/>
+      <axis xyz="1 0 0"/>
       <parent link="link_D"/>
       <child link="link_F"/>
       <origin xyz="0 0 -0.2" rpy="0 0 0"/>
