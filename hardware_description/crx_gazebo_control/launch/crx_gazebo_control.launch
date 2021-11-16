@@ -6,7 +6,7 @@
     <!-- load the controllers -->
     <node name="controller_spawner" pkg="controller_manager" 
             type="spawner" ns="crx_v1" output="screen"
-            args="joint_a2b_effort_controller joint_b2c_effort_controller joint_d2e_effort_controller">
+            args="joint_la2lb_effort_controller joint_lb2lc_effort_controller joint_ld2le_effort_controller joint_ra2rb_effort_controller joint_rb2rc_effort_controller joint_rd2re_effort_controller">
     </node>
 
     <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui"/>

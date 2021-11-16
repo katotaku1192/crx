@@ -4,13 +4,11 @@
         <static>false</static>
         <self_collide>1</self_collide>
 
+        <link name="world"/>
+        
         <link name="base_link">
-            <pose>0 0 0 0 0 0</pose>
-        </link>
-
-        <link name="link_A">
             <self_collide>1</self_collide>
-            <pose>0 0.1 0 0 0 0</pose>
+            <pose>0 0 0 0 0 0</pose>
             <inertial>
                 <mass>0.5</mass>
                 <inertia> <!-- inertias are tricky to compute -->
@@ -23,14 +21,55 @@
                     <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
                 </inertia>
             </inertial>
-            <visual name="link_A_visual">
+            <visual name="base_link_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>0.3</radius>
+                        <length>0.3</length>
+                    </cylinder>
+                </geometry>
+            </visual>
+            <collision name="base_link_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.3</radius>
+                        <length>0.3</length>
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="link_LA">
+            <self_collide>1</self_collide>
+            <pose>0 0.4 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_LA_visual">
                 <geometry>
                     <box>
                         <size>0.1 0.2 0.2</size>
                     </box>
                 </geometry>
             </visual>
-            <collision name="link_A_collision">
+            <collision name="link_LA_collision">
                 <geometry>
                     <box>
                         <size>0.1 0.2 0.2</size>
@@ -47,9 +86,9 @@
             </collision>
         </link>
 
-        <link name="link_B">
+        <link name="link_LB">
             <self_collide>1</self_collide>
-            <pose>0 0.3 0 0 0 0</pose>
+            <pose>0 0.6 0 0 0 0</pose>
             <inertial>
                 <mass>0.5</mass>                
                 <inertia> <!-- inertias are tricky to compute -->
@@ -62,14 +101,14 @@
                     <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
                 </inertia>
             </inertial>
-            <visual name="link_B_visual">                
+            <visual name="link_LB_visual">                
                 <geometry>
                     <box>
                         <size>0.1 0.2 0.2</size>
                     </box>
                 </geometry>
             </visual>
-            <collision name="link_B_collision">               
+            <collision name="link_LB_collision">               
                 <geometry>
                     <box>
                         <size>0.1 0.2 0.2</size>
@@ -86,9 +125,9 @@
             </collision>
         </link>
 
-        <link name="link_C">
+        <link name="link_LC">
             <self_collide>1</self_collide>
-            <pose>0 0.6 0.1 0 0 0</pose>
+            <pose>0 0.9 0.1 0 0 0</pose>
             <inertial>
                 <mass>0.5</mass>               
                 <inertia> <!-- inertias are tricky to compute -->
@@ -101,14 +140,14 @@
                     <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
                 </inertia>
             </inertial>
-            <visual name="link_C_visual">                
+            <visual name="link_LC_visual">                
                 <geometry>
                     <box>
                         <size>0.1 0.4 0.05</size>
                     </box>
                 </geometry>
             </visual>
-            <collision name="link_C_collision">                
+            <collision name="link_LC_collision">                
                 <geometry>
                     <box>
                         <size>0.1 0.4 0.05</size>
@@ -125,9 +164,9 @@
             </collision>
         </link>
 
-        <link name="link_D">
+        <link name="link_LD">
             <self_collide>1</self_collide>
-            <pose>0 0.9 0 0 0 0</pose>
+            <pose>0 1.2 0 0 0 0</pose>
             <inertial>
                 <mass>0.5</mass>                
                 <inertia> <!-- inertias are tricky to compute -->
@@ -140,14 +179,14 @@
                     <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
                 </inertia>
             </inertial>
-            <visual name="link_D_visual">                
+            <visual name="link_LD_visual">                
                 <geometry>
                     <box>
                         <size>0.1 0.2 0.2</size>
                     </box>
                 </geometry>
             </visual>
-            <collision name="link_D_collision">                
+            <collision name="link_LD_collision">                
                 <geometry>
                     <box>
                         <size>0.1 0.2 0.2</size>
@@ -164,9 +203,9 @@
             </collision>
         </link>
 
-        <link name="link_E">
+        <link name="link_LE">
             <self_collide>1</self_collide>
-            <pose>0 1.1 0 0 0 0</pose>
+            <pose>0 1.4 0 0 0 0</pose>
             <inertial>
                 <mass>0.5</mass>               
                 <inertia> <!-- inertias are tricky to compute -->
@@ -179,14 +218,14 @@
                     <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
                 </inertia>
             </inertial>
-            <visual name="link_E_visual">
+            <visual name="link_LE_visual">
                 <geometry>
                     <box>
                         <size>0.1 0.2 0.2</size>
                     </box>
                 </geometry>
             </visual>
-            <collision name="link_E_collision">                
+            <collision name="link_LE_collision">                
                 <geometry>
                     <box>
                         <size>0.1 0.2 0.2</size>
@@ -203,9 +242,9 @@
             </collision>
         </link>
 
-        <link name="link_F">
+        <link name="link_LF">
             <self_collide>1</self_collide>
-            <pose>0 0.6 -0.1 0 0 0</pose>
+            <pose>0 0.9 -0.1 0 0 0</pose>
             <inertial>
                 <mass>0.5</mass>               
                 <inertia> <!-- inertias are tricky to compute -->
@@ -218,14 +257,14 @@
                     <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
                 </inertia>
             </inertial>
-            <visual name="link_F_visual">                
+            <visual name="link_LF_visual">                
                 <geometry>
                     <box>
                         <size>0.1 0.4 0.05</size>
                     </box>
                 </geometry>
             </visual>
-            <collision name="link_F_collision">                
+            <collision name="link_LF_collision">                
                 <geometry>
                     <box>
                         <size>0.1 0.4 0.05</size>
@@ -242,16 +281,338 @@
             </collision>
         </link>
 
+        <link name="end_link_L">
+            <self_collide>1</self_collide>
+            <pose>0 1.8 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="end_link_L_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>0.3</radius>
+                        <length>0.3</length>
+                    </cylinder>
+                </geometry>
+            </visual>
+            <collision name="end_link_L_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.3</radius>
+                        <length>0.3</length>
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
 
-        <joint name="base_link_to_link_A" type="fixed">
-            <parent>base_link</parent>
-            <child>link_A</child>
+        <link name="link_RA">
+            <self_collide>1</self_collide>
+            <pose>0 -0.4 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_RA_visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.2</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_RA_collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.2</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="link_RB">
+            <self_collide>1</self_collide>
+            <pose>0 -0.6 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>                
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_RB_visual">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.2</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_RB_collision">               
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.2</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="link_RC">
+            <self_collide>1</self_collide>
+            <pose>0 -0.9 0.1 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>               
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_RC_visual">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.4 0.05</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_RC_collision">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.4 0.05</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="link_RD">
+            <self_collide>1</self_collide>
+            <pose>0 -1.2 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>                
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_RD_visual">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.2</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_RD_collision">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.2</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="link_RE">
+            <self_collide>1</self_collide>
+            <pose>0 -1.4 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>               
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_RE_visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.2</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_RE_collision">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.2</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="link_RF">
+            <self_collide>1</self_collide>
+            <pose>0 -0.9 -0.1 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>               
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="link_RF_visual">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.4 0.05</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="link_RF_collision">                
+                <geometry>
+                    <box>
+                        <size>0.1 0.4 0.05</size>
+                    </box>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+        <link name="end_link_R">
+            <self_collide>1</self_collide>
+            <pose>0 -1.8 0 0 0 0</pose>
+            <inertial>
+                <mass>0.5</mass>
+                <inertia> <!-- inertias are tricky to compute -->
+                    <!-- http://gazebosim.org/tutorials?tut=inertia&cat=build_robot -->
+                    <ixx>0.083</ixx>       <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+                    <ixy>0.0</ixy>         <!-- for a box: ixy = 0 -->
+                    <ixz>0.0</ixz>         <!-- for a box: ixz = 0 -->
+                    <iyy>0.083</iyy>       <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+                    <iyz>0.0</iyz>         <!-- for a box: iyz = 0 -->
+                    <izz>0.083</izz>       <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+                </inertia>
+            </inertial>
+            <visual name="end_link_R_visual">
+                <geometry>
+                    <cylinder>
+                        <radius>0.3</radius>
+                        <length>0.3</length>
+                    </cylinder>
+                </geometry>
+            </visual>
+            <collision name="end_link_R_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.3</radius>
+                        <length>0.3</length>
+                    </cylinder>
+                </geometry>
+                <surface>
+                    <friction>
+                        <ode>
+                            <mu>0.01</mu>
+                            <mu2>0.01</mu2>
+                        </ode>
+                    </friction>
+                </surface>
+            </collision>
+        </link>
+
+    
+        <joint name="world_to_base_link" type="fixed">
+            <parent>world</parent>
+            <child>base_link</child>
             <pose>0 0 0 0 0 0</pose>
         </joint>
 
-        <joint name="link_A_to_link_B" type="revolute">
-            <parent>link_A</parent>
-            <child>link_B</child>
+        <joint name="base_link_to_link_LA" type="fixed">
+            <parent>base_link</parent>
+            <child>link_LA</child>
+            <pose>0 -0.1 0 0 0 0</pose>
+        </joint>
+
+        <joint name="link_LA_to_link_LB" type="revolute">
+            <parent>link_LA</parent>
+            <child>link_LB</child>
             <pose>0 -0.1 0 0 0 0</pose>
             <axis>
                 <limit>
@@ -264,9 +625,9 @@
             </axis>
         </joint>
 
-        <joint name="link_B_to_link_C" type="revolute">
-            <parent>link_B</parent>
-            <child>link_C</child>
+        <joint name="link_LB_to_link_LC" type="revolute">
+            <parent>link_LB</parent>
+            <child>link_LC</child>
             <pose>0 -0.2 0 0 0 0</pose>
             <axis>
                 <limit>
@@ -279,18 +640,18 @@
             </axis>
         </joint>
 
-        <joint name="link_C_to_link_D" type="revolute">
-            <parent>link_C</parent>
-            <child>link_D</child>
+        <joint name="link_LC_to_link_LD" type="revolute">
+            <parent>link_LC</parent>
+            <child>link_LD</child>
             <pose>0 -0.1 0.1 0 0 0</pose>
             <axis>
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
 
-        <joint name="link_D_to_link_E" type="revolute">
-            <parent>link_D</parent>
-            <child>link_E</child>
+        <joint name="link_LD_to_link_LE" type="revolute">
+            <parent>link_LD</parent>
+            <child>link_LE</child>
             <pose>0 -0.1 0 0 0 0</pose>
             <axis>
                 <limit>
@@ -303,23 +664,115 @@
             </axis>
         </joint>
 
-        <joint name="link_D_to_link_F" type="revolute">
-            <parent>link_D</parent>
-            <child>link_F</child>
+        <joint name="link_LD_to_link_LF" type="revolute">
+            <parent>link_LD</parent>
+            <child>link_LF</child>
             <pose>0 0.2 0 0 0 0</pose>
             <axis>
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
 
-        <joint name="close_joint" type="revolute">
-            <parent>link_F</parent>
-            <child>link_B</child>
+        <joint name="close_joint_L" type="revolute">
+            <parent>link_LF</parent>
+            <child>link_LB</child>
             <pose>0 0.1 -0.1 0 0 0</pose>
             <axis>
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
+
+        <joint name="link_LE_to_end_link_L" type="fixed">
+            <parent>link_LE</parent>
+            <child>end_link_L</child>
+            <pose>0 -0.3 0 0 0 0</pose>
+        </joint>
+
+
+        <joint name="base_link_to_link_RA" type="fixed">
+            <parent>base_link</parent>
+            <child>link_RA</child>
+            <pose>0 0.1 0 0 0 0</pose>
+        </joint>
+
+        <joint name="link_RA_to_link_RB" type="revolute">
+            <parent>link_RA</parent>
+            <child>link_RB</child>
+            <pose>0 0.1 0 0 0 0</pose>
+            <axis>
+                <limit>
+                    <lower>-1.0</lower>
+                    <upper>1.0</upper>
+                    <effort>100.0</effort>
+                    <velocity>3.14</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+        </joint>
+
+        <joint name="link_RB_to_link_RC" type="revolute">
+            <parent>link_RB</parent>
+            <child>link_RC</child>
+            <pose>0 0.2 0 0 0 0</pose>
+            <axis>
+                <limit>
+                    <lower>-1.0</lower>
+                    <upper>1.0</upper>
+                    <effort>100.0</effort>
+                    <velocity>3.14</velocity>
+                </limit>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+
+        <joint name="link_RC_to_link_RD" type="revolute">
+            <parent>link_RC</parent>
+            <child>link_RD</child>
+            <pose>0 0.1 0.1 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+
+        <joint name="link_RD_to_link_RE" type="revolute">
+            <parent>link_RD</parent>
+            <child>link_RE</child>
+            <pose>0 0.1 0 0 0 0</pose>
+            <axis>
+                <limit>
+                    <lower>-1.0</lower>
+                    <upper>1.0</upper>
+                    <effort>100.0</effort>
+                    <velocity>3.14</velocity>
+                </limit>
+                <xyz>0 0 1</xyz>
+            </axis>
+        </joint>
+
+        <joint name="link_RD_to_link_RF" type="revolute">
+            <parent>link_RD</parent>
+            <child>link_RF</child>
+            <pose>0 -0.2 0 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+
+        <joint name="close_joint_R" type="revolute">
+            <parent>link_RF</parent>
+            <child>link_RB</child>
+            <pose>0 -0.1 -0.1 0 0 0</pose>
+            <axis>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+
+        <joint name="link_RE_to_end_link_R" type="fixed">
+            <parent>link_RE</parent>
+            <child>end_link_R</child>
+            <pose>0 -0.3 0 0 0 0</pose>
+        </joint>
+
 
         <!-- gazebo_ros_control plugins -->
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -330,7 +783,7 @@
 
         <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
             <robotNamespace>crx_v1</robotNamespace>
-            <jointName>link_A_to_link_B, link_B_to_link_C, link_C_to_link_D, link_D_to_link_E, link_D_to_link_F</jointName>
+            <jointName>link_LA_to_link_LB, link_LB_to_link_LC, link_LC_to_link_LD, link_LD_to_link_LE, link_LD_to_link_LF, link_RA_to_link_RB, link_RB_to_link_RC, link_RC_to_link_RD, link_RD_to_link_RE, link_RD_to_link_RF</jointName>
             <!-- SDF記述メモ："fixed"に設定されたJointはnan値が出力されるのでROS側で下記エラーが出る -->
             <!-- Ignoring transform for child_frame_id "hoge" from authority "unknown_publisher" because of an invalid quaternion in the transform (nan nan nan nan) -->
         </plugin>
