@@ -18,3 +18,13 @@ crx_v1:
     type: effort_controllers/JointPositionController
     joint: link_B_to_link_C
     pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  joint_d2e_position_controller:
+    type: position_controllers/JointPositionController
+    joint: link_D_to_link_E
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  joint_d2e_effort_controller:
+    type: effort_controllers/JointPositionController
+    joint: link_D_to_link_E
+    pid: {p: 100.0, i: 0.01, d: 10.0}
