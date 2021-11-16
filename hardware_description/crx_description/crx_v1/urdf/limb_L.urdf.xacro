@@ -3,9 +3,9 @@
 
 <xacro:include filename="$(find crx_description)/crx_v1/urdf/limb.transmission.xacro"/>
 
-<xacro:macro name="limb" params="parent *joint_origin">
+<xacro:macro name="limb_L" params="parent *joint_origin">
 
-    <link name="link_A">
+    <link name="link_LA">
       <visual>
         <origin xyz="0 0.1 0" rpy="0 0 0"/>
         <geometry>
@@ -20,7 +20,7 @@
       </collision>
     </link>
 
-    <link name="link_B">
+    <link name="link_LB">
       <visual>
         <origin xyz="0 0.1 0" rpy="0 0 0"/>
         <geometry>
@@ -35,7 +35,7 @@
       </collision>
     </link>
 
-    <link name="link_C">
+    <link name="link_LC">
       <visual>
         <origin xyz="0 0.2 0" rpy="0 0 0"/>
         <geometry>
@@ -50,7 +50,7 @@
       </collision>
     </link>
 
-    <link name="link_D">
+    <link name="link_LD">
       <visual>
         <origin xyz="0 0.1 -0.1" rpy="0 0 0"/>
         <geometry>
@@ -65,7 +65,7 @@
       </collision>
     </link>
 
-    <link name="link_E">
+    <link name="link_LE">
       <visual>
         <origin xyz="0 0.1 0" rpy="0 0 0"/>
         <geometry>
@@ -80,7 +80,7 @@
       </collision>
     </link>
     
-    <link name="link_F">
+    <link name="link_LF">
       <visual>
         <origin xyz="0 -0.2 0" rpy="0 0 0"/>
         <geometry>
@@ -95,55 +95,77 @@
       </collision>
     </link>
 
+    <link name="end_link_L">
+      <visual>
+        <origin xyz="0 0.3 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.3" length="0.3"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0.3 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.3" length="0.3"/>
+        </geometry>
+      </collision>
+    </link>
 
-    <joint name="${parent}_to_link_A" type="fixed">
+
+
+    <joint name="${parent}_to_link_LA" type="fixed">
       <parent link="${parent}"/>
-      <child link="link_A"/>
+      <child link="link_LA"/>
       <xacro:insert_block name="joint_origin"/>
     </joint>
 
-    <joint name="link_A_to_link_B" type="revolute">
+    <joint name="link_LA_to_link_LB" type="revolute">
       <axis xyz="0 0 1"/>
       <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
       <dynamics damping="0.1"/>
-      <parent link="link_A"/>
-      <child link="link_B"/>
+      <parent link="link_LA"/>
+      <child link="link_LB"/>
       <origin xyz="0 0.2 0" rpy="0 0 0"/>
     </joint>
-    <xacro:effort_trans joint="link_A_to_link_B"/>
+    <xacro:effort_trans joint="link_LA_to_link_LB"/>
 
-    <joint name="link_B_to_link_C" type="revolute">
+    <joint name="link_LB_to_link_LC" type="revolute">
       <axis xyz="1 0 0"/>
       <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
       <dynamics damping="0.1"/>
-      <parent link="link_B"/>
-      <child link="link_C"/>
+      <parent link="link_LB"/>
+      <child link="link_LC"/>
       <origin xyz="0 0.2 0.1" rpy="0 0 0"/>
     </joint>
-    <xacro:effort_trans joint="link_B_to_link_C"/>
+    <xacro:effort_trans joint="link_LB_to_link_LC"/>
 
-    <joint name="link_C_to_link_D" type="continuous">
+    <joint name="link_LC_to_link_LD" type="continuous">
       <axis xyz="1 0 0"/>
-      <parent link="link_C"/>
-      <child link="link_D"/>
+      <parent link="link_LC"/>
+      <child link="link_LD"/>
       <origin xyz="0 0.4 0" rpy="0 0 0"/>
     </joint>
 
-    <joint name="link_D_to_link_E" type="revolute">
+    <joint name="link_LD_to_link_LE" type="revolute">
       <axis xyz="0 0 1"/>
       <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
       <dynamics damping="0.1"/>
-      <parent link="link_D"/>
-      <child link="link_E"/>
+      <parent link="link_LD"/>
+      <child link="link_LE"/>
       <origin xyz="0 0.2 -0.1" rpy="0 0 0"/>
     </joint>
-    <xacro:effort_trans joint="link_D_to_link_E"/>
+    <xacro:effort_trans joint="link_LD_to_link_LE"/>
 
-    <joint name="link_D_to_link_F" type="continuous">
+    <joint name="link_LD_to_link_LF" type="continuous">
       <axis xyz="1 0 0"/>
-      <parent link="link_D"/>
-      <child link="link_F"/>
+      <parent link="link_LD"/>
+      <child link="link_LF"/>
       <origin xyz="0 0 -0.2" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="link_LE_to_end_link_L" type="fixed">
+      <parent link="link_LE"/>
+      <child link="end_link_L"/>
+      <origin xyz="0 0.2 0" rpy="0 0 0"/>
     </joint>
     
 </xacro:macro>

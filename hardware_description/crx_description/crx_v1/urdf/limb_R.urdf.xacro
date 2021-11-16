@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:include filename="$(find crx_description)/crx_v1/urdf/limb.transmission.xacro"/>
+
+<xacro:macro name="limb_R" params="parent *joint_origin">
+
+    <link name="link_RA">
+      <visual>
+        <origin xyz="0 -0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link_RB">
+      <visual>
+        <origin xyz="0 -0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link_RC">
+      <visual>
+        <origin xyz="0 -0.2 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.4 0.05"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.2 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.4 0.05"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link_RD">
+      <visual>
+        <origin xyz="0 -0.1 -0.1" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.1 -0.1" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="link_RE">
+      <visual>
+        <origin xyz="0 -0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.1 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.2 0.2"/>
+        </geometry>
+      </collision>
+    </link>
+    
+    <link name="link_RF">
+      <visual>
+        <origin xyz="0 0.2 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.4 0.05"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0.2 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.4 0.05"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="end_link_R">
+      <visual>
+        <origin xyz="0 -0.3 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.3" length="0.3"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.3 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.3" length="0.3"/>
+        </geometry>
+      </collision>
+    </link>
+
+
+
+    <joint name="${parent}_to_link_RA" type="fixed">
+      <parent link="${parent}"/>
+      <child link="link_RA"/>
+      <xacro:insert_block name="joint_origin"/>
+    </joint>
+
+    <joint name="link_RA_to_link_RB" type="revolute">
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
+      <dynamics damping="0.1"/>
+      <parent link="link_RA"/>
+      <child link="link_RB"/>
+      <origin xyz="0 -0.2 0" rpy="0 0 0"/>
+    </joint>
+    <xacro:effort_trans joint="link_RA_to_link_RB"/>
+
+    <joint name="link_RB_to_link_RC" type="revolute">
+      <axis xyz="1 0 0"/>
+      <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
+      <dynamics damping="0.1"/>
+      <parent link="link_RB"/>
+      <child link="link_RC"/>
+      <origin xyz="0 -0.2 0.1" rpy="0 0 0"/>
+    </joint>
+    <xacro:effort_trans joint="link_RB_to_link_RC"/>
+
+    <joint name="link_RC_to_link_RD" type="continuous">
+      <axis xyz="1 0 0"/>
+      <parent link="link_RC"/>
+      <child link="link_RD"/>
+      <origin xyz="0 -0.4 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="link_RD_to_link_RE" type="revolute">
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.0" upper="1.0" effort="100.0" velocity="3.14"/>
+      <dynamics damping="0.1"/>
+      <parent link="link_RD"/>
+      <child link="link_RE"/>
+      <origin xyz="0 -0.2 -0.1" rpy="0 0 0"/>
+    </joint>
+    <xacro:effort_trans joint="link_RD_to_link_RE"/>
+
+    <joint name="link_RD_to_link_RF" type="continuous">
+      <axis xyz="1 0 0"/>
+      <parent link="link_RD"/>
+      <child link="link_RF"/>
+      <origin xyz="0 0 -0.2" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="link_RE_to_end_link_R" type="fixed">
+      <parent link="link_RE"/>
+      <child link="end_link_R"/>
+      <origin xyz="0 -0.2 0" rpy="0 0 0"/>
+    </joint>
+    
+</xacro:macro>
+
+</robot>

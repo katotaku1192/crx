@@ -1,30 +1,62 @@
 crx_v1:
-  joint_a2b_position_controller:
+  joint_la2lb_position_controller:
     type: position_controllers/JointPositionController
-    joint: link_A_to_link_B
+    joint: link_LA_to_link_LB
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
-  joint_a2b_effort_controller:
+  joint_la2lb_effort_controller:
     type: effort_controllers/JointPositionController
-    joint: link_A_to_link_B
+    joint: link_LA_to_link_LB
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
-  joint_b2c_position_controller:
+  joint_lb2lc_position_controller:
     type: position_controllers/JointPositionController
-    joint: link_B_to_link_C
+    joint: link_LB_to_link_LC
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
-  joint_b2c_effort_controller:
+  joint_lb2lc_effort_controller:
     type: effort_controllers/JointPositionController
-    joint: link_B_to_link_C
+    joint: link_LB_to_link_LC
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
-  joint_d2e_position_controller:
+  joint_ld2le_position_controller:
     type: position_controllers/JointPositionController
-    joint: link_D_to_link_E
+    joint: link_LD_to_link_LE
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
-  joint_d2e_effort_controller:
+  joint_ld2le_effort_controller:
     type: effort_controllers/JointPositionController
-    joint: link_D_to_link_E
+    joint: link_LD_to_link_LE
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
+
+  joint_ra2rb_position_controller:
+    type: position_controllers/JointPositionController
+    joint: link_RA_to_link_RB
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  joint_ra2rb_effort_controller:
+    type: effort_controllers/JointPositionController
+    joint: link_RA_to_link_RB
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  joint_rb2rc_position_controller:
+    type: position_controllers/JointPositionController
+    joint: link_RB_to_link_RC
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  joint_rb2rc_effort_controller:
+    type: effort_controllers/JointPositionController
+    joint: link_RB_to_link_RC
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  joint_rd2re_position_controller:
+    type: position_controllers/JointPositionController
+    joint: link_RD_to_link_RE
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  joint_rd2re_effort_controller:
+    type: effort_controllers/JointPositionController
+    joint: link_RD_to_link_RE
     pid: {p: 100.0, i: 0.01, d: 10.0}
